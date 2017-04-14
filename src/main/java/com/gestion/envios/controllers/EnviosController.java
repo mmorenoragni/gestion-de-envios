@@ -1,5 +1,9 @@
 package com.gestion.envios.controllers;
 
+import com.gestion.envios.dao.UsuarioDao;
+import com.gestion.envios.entity.Usuario;
+import com.gestion.envios.servicios.UsuarioServices;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -12,12 +16,11 @@ import java.util.List;
 @RestController
 public class EnviosController {
 
+    @Autowired
+    private UsuarioServices usuarioServices;
+
     @RequestMapping(value = "index-prueba")
-    public List<String> prueba() {
-        List<String> listaReturn = new ArrayList<String>();
-        listaReturn.add("1");
-        listaReturn.add("2");
-        listaReturn.add("3");
-        return listaReturn;
+    public List<Usuario> prueba() {
+        return usuarioServices.getAll();
     }
 }
