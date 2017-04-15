@@ -1,7 +1,6 @@
 package com.gestion.envios.entity;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
 
 /**
  * Created by Usuario on 14/04/2017.
@@ -10,17 +9,29 @@ import java.sql.Timestamp;
 @Table(name = "USUARIOS")
 public class Usuario {
 
+    private Long id;
+
+
+    private String firstName;
+
+
+    private String lastName;
+
+    private RolUsuario rolUsuario;
+
+    @OneToOne
+    @JoinColumn(name = "rol_usuario_id")
+    public RolUsuario getRolUsuario() {
+        return rolUsuario;
+    }
+
+    public void setRolUsuario(RolUsuario rolUsuario) {
+        this.rolUsuario = rolUsuario;
+    }
+
     @Id
     @GeneratedValue
     @Column(name = "usuario_id", nullable = false)
-    private Long id;
-
-    @Column(name = "first_name", nullable = false)
-    private String firstName;
-
-    @Column(name = "last_name", nullable = false)
-    private String lastName;
-
     public Long getId() {
         return id;
     }
@@ -29,6 +40,7 @@ public class Usuario {
         this.id = id;
     }
 
+    @Column(name = "first_name", nullable = false)
     public String getFirstName() {
         return firstName;
     }
@@ -37,6 +49,7 @@ public class Usuario {
         this.firstName = firstName;
     }
 
+    @Column(name = "last_name", nullable = false)
     public String getLastName() {
         return lastName;
     }
