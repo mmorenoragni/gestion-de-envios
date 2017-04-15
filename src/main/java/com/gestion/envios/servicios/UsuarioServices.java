@@ -23,4 +23,10 @@ public class UsuarioServices {
         final List<Usuario> usuarios = usuarioDao.getAll();
         return usuarios;
     }
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    public Usuario getUserByPasswordAndId(String userName) {
+        final Usuario usuario = usuarioDao.getUserByPasswordAndId(userName);
+        return usuario;
+    }
 }
