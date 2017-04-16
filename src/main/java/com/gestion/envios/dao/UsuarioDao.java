@@ -24,11 +24,14 @@ public class UsuarioDao {
         return criteria.list();
     }
 
-    public Usuario getUserByPasswordAndId(String userName) {
+    public Usuario getUserByPasswordAndId(String userName, String password) {
 
         Session session = sessionFactory.getCurrentSession();
-        String hql = "from Usuario where firstName = 'lucas'";
-        Query query = session.createQuery(hql);
+        String hql = "from Usuario where firstName = :userName and password = :password";
+        Query query = session.createQuery(hql)
+                        .setParameter("userName",userName)
+                        .setParameter("password",password);
+
         Usuario usuarioReturn = (Usuario) query.uniqueResult();
         return usuarioReturn;
     }

@@ -25,8 +25,8 @@ public class UsuarioServices {
     }
 
     @Transactional(propagation = Propagation.REQUIRED)
-    public Usuario getUserByPasswordAndId(String userName) {
-        final Usuario usuario = usuarioDao.getUserByPasswordAndId(userName);
+    public Usuario getUserByPasswordAndId(String userName,String password) {
+        final Usuario usuario = usuarioDao.getUserByPasswordAndId(userName, password);
         return usuario;
     }
 }
