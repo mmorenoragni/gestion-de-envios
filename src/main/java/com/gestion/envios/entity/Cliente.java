@@ -1,6 +1,11 @@
 package com.gestion.envios.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.Set;
+
+import static javax.persistence.CascadeType.ALL;
 
 /**
  * Created by Usuario on 16/04/2017.
@@ -13,7 +18,7 @@ public class Cliente {
     private long documento;
     private String name;
     private String lastName;
-    private String password;
+    private Set<Encomienda> encomiendas;
 
     @Id
     @GeneratedValue
@@ -53,12 +58,13 @@ public class Cliente {
         this.lastName = lastName;
     }
 
-    @Column(name = "password")
-    public String getPassword() {
-        return password;
+    @OneToMany(cascade=ALL, mappedBy="cliente")
+    @JsonIgnore
+    public Set<Encomienda> getEncomiendas() {
+        return encomiendas;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setEncomiendas(Set<Encomienda> encomiendas) {
+        this.encomiendas = encomiendas;
     }
 }

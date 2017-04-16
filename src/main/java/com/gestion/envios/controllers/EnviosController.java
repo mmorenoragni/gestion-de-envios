@@ -1,7 +1,10 @@
 package com.gestion.envios.controllers;
 
 import com.gestion.envios.dao.UsuarioDao;
+import com.gestion.envios.entity.Cliente;
+import com.gestion.envios.entity.Encomienda;
 import com.gestion.envios.entity.Usuario;
+import com.gestion.envios.servicios.ClienteService;
 import com.gestion.envios.servicios.UsuarioServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,8 +22,17 @@ public class EnviosController {
     @Autowired
     private UsuarioServices usuarioServices;
 
-    @RequestMapping(value = "index-prueba")
-    public List<Usuario> prueba() {
+    @Autowired
+    private ClienteService clienteService;
+
+    @RequestMapping(value = "usuario-prueba")
+    public List<Usuario> PruebaUsuario() {
         return usuarioServices.getAll();
+    }
+
+
+    @RequestMapping(value = "cliente-prueba")
+    public List<Encomienda> PruebaCliente() {
+        return clienteService.getAllEncomiendas();
     }
 }
